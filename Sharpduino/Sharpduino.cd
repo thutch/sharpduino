@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Sharpduino.Base.FirmataBase">
+    <Position X="16.75" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\FirmataBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sharpduino.Base.FirmataEmptyBase">
+    <Position X="16.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAIOAEAQAAACAkAAACgAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\FirmataEmptyBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.Base.MessageBroker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAACAABAQIAAAAAAAAA=</HashCode>
+      <FileName>Base\MessageBroker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.ArduinoUno">
+    <Position X="20.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACSAAABAgAAAACgAAAAAAAEAABAAABAAAIAA=</HashCode>
+      <FileName>ArduinoUno.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.EasyFirmata">
+    <Position X="18.75" Y="7.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Sharpduino.EasyFirmata.InitializationStages" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>EasyFirmata.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAAAEBAAACAACAAABCEAIAAAGAQFACJACAAGBgAAAAA=</HashCode>
+      <FileName>EasyFirmata.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.Pin">
+    <Position X="20.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sharpduino.SerialProviders.ComPortProvider" Collapsed="true">
+    <Position X="11" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAIAAAAEAAAAAAAAAIABgAAAAAAACAAAA=</HashCode>
+      <FileName>SerialProviders\ComPortProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.Logging.EmptyLogger" Collapsed="true">
+    <Position X="14.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAABEAAAAAAEAAAAA=</HashCode>
+      <FileName>Logging\EmptyLogger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Sharpduino.Logging.DebugLogger" Collapsed="true">
+    <Position X="14.5" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAABEAAAAAAEAAAAA=</HashCode>
+      <FileName>Logging\DebugLogger.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Sharpduino.Base.IHandle" Collapsed="true">
+    <Position X="14" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IHandle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Base.IHandle&lt;T&gt;" Collapsed="true">
+    <Position X="14" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IHandle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Base.IHandleAdvancedMessages" Collapsed="true">
+    <Position X="12.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IHandleAdvancedMessages.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Base.IHandleAllMessages" Collapsed="true">
+    <Position X="14" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IHandleAllMessages.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Base.IHandleBasicMessages" Collapsed="true">
+    <Position X="15" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Base\IHandleBasicMessages.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Base.IMessageBroker">
+    <Position X="11" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQIAAAAAAAAA=</HashCode>
+      <FileName>Base\IMessageBroker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.SerialProviders.ISerialProvider">
+    <Position X="11" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAEAAAAAAAAAIAAAAAAAAAACAAAA=</HashCode>
+      <FileName>SerialProviders\ISerialProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Sharpduino.Logging.ILogger">
+    <Position X="12.75" Y="12.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAABEAAAAAAEAAAAA=</HashCode>
+      <FileName>Logging\ILogger.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

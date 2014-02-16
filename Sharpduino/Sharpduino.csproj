@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99803926-2DF8-4FCE-8821-51432406288E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sharpduino</RootNamespace>
+    <AssemblyName>Sharpduino</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\sharpduino\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1312.1622\lib\net40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\pNUnit.2.6.3\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArduinoUno.cs" />
+    <Compile Include="Constants\ArduinoUnoAnalogPins.cs" />
+    <Compile Include="Constants\ArduinoUnoPins.cs" />
+    <Compile Include="Constants\ArduinoUnoPWMPins.cs" />
+    <Compile Include="Base\BitHelper.cs" />
+    <Compile Include="Constants\MessageConstants.cs" />
+    <Compile Include="Constants\PinModes.cs" />
+    <Compile Include="Constants\SysexCommands.cs" />
+    <Compile Include="Creators\AnalogOutputMessageCreator.cs" />
+    <Compile Include="Creators\BaseMessageCreator.cs" />
+    <Compile Include="Creators\DigitalMessageCreator.cs" />
+    <Compile Include="Creators\ExtendedAnalogMessageCreator.cs" />
+    <Compile Include="Creators\I2CConfigMessageCreator.cs" />
+    <Compile Include="Creators\I2CRequestMessageCreator.cs" />
+    <Compile Include="Creators\IMessageCreator.cs" />
+    <Compile Include="Creators\PinModeMessageCreator.cs" />
+    <Compile Include="Creators\PinStateQueryMessageCreator.cs" />
+    <Compile Include="Creators\SamplingIntervalMessageCreator.cs" />
+    <Compile Include="Creators\ServoConfigMessageCreator.cs" />
+    <Compile Include="Creators\StaticMessageCreator.cs" />
+    <Compile Include="Creators\ToggleAnalogReportMessageCreator.cs" />
+    <Compile Include="Creators\ToggleDigitalReportMessageCreator.cs" />
+    <Compile Include="EasyFirmata.cs" />
+    <Compile Include="Exceptions\FirmataException.cs" />
+    <Compile Include="Exceptions\InvalidFirmataMessageException.cs" />
+    <Compile Include="Exceptions\InvalidPinModeException.cs" />
+    <Compile Include="Exceptions\MessageCreatorException.cs" />
+    <Compile Include="Exceptions\MessageHandlerException.cs" />
+    <Compile Include="Base\FirmataBase.cs" />
+    <Compile Include="Base\FirmataEmptyBase.cs" />
+    <Compile Include="Handlers\AnalogMappingMessageHandler.cs" />
+    <Compile Include="Handlers\AnalogMessageHandler.cs" />
+    <Compile Include="Handlers\BaseMessageHandler.cs" />
+    <Compile Include="Handlers\CapabilityMessageHandler.cs" />
+    <Compile Include="Handlers\I2CMessageHandler.cs" />
+    <Compile Include="Handlers\IMessageHandler.cs" />
+    <Compile Include="Handlers\PinStateMessageHandler.cs" />
+    <Compile Include="Handlers\ProtocolVersionMessageHandler.cs" />
+    <Compile Include="Handlers\SysexFirmwareMessageHandler.cs" />
+    <Compile Include="Handlers\SysexMessageHandler.cs" />
+    <Compile Include="Handlers\SysexStringMessageHandler.cs" />
+    <Compile Include="Base\IHandle.cs" />
+    <Compile Include="Base\IMessageBroker.cs" />
+    <Compile Include="Base\MessageBroker.cs" />
+    <Compile Include="Base\IHandleAdvancedMessages.cs" />
+    <Compile Include="Base\IHandleAllMessages.cs" />
+    <Compile Include="Base\IHandleBasicMessages.cs" />
+    <Compile Include="Logging\DebugLogger.cs" />
+    <Compile Include="Logging\EmptyLogger.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Messages\Receive\AnalogMappingMessage.cs" />
+    <Compile Include="Messages\Receive\CapabilitiesFinishedMessage.cs" />
+    <Compile Include="Messages\Receive\CapabilityMessage.cs" />
+    <Compile Include="Messages\Receive\I2CResponseMessage.cs" />
+    <Compile Include="Messages\Receive\PinStateMessage.cs" />
+    <Compile Include="Messages\Receive\ProtocolVersionMessage.cs" />
+    <Compile Include="Messages\Receive\SysexFirmwareMessage.cs" />
+    <Compile Include="Messages\Receive\SysexStringMessage.cs" />
+    <Compile Include="Messages\Send\AnalogMappingQueryMessage.cs" />
+    <Compile Include="Messages\Send\ExtendedAnalogMessage.cs" />
+    <Compile Include="Messages\Send\I2CConfigMessage.cs" />
+    <Compile Include="Messages\Send\I2CReadWriteOptions.cs" />
+    <Compile Include="Messages\Send\I2CRequestMessage.cs" />
+    <Compile Include="Messages\Send\PinModeMessage.cs" />
+    <Compile Include="Messages\Send\PinStateQueryMessage.cs" />
+    <Compile Include="Messages\Send\ProtocolVersionRequestMessage.cs" />
+    <Compile Include="Messages\Send\QueryCapabilityMessage.cs" />
+    <Compile Include="Messages\Send\QueryFirmwareMessage.cs" />
+    <Compile Include="Messages\Send\ResetMessage.cs" />
+    <Compile Include="Messages\Send\SamplingIntervalMessage.cs" />
+    <Compile Include="Messages\Send\ServoConfigMessage.cs" />
+    <Compile Include="Messages\Send\StaticMessage.cs" />
+    <Compile Include="Messages\Send\ToggleAnalogReportMessage.cs" />
+    <Compile Include="Messages\Send\ToggleDigitalReportMessage.cs" />
+    <Compile Include="Messages\TwoWay\AnalogMessage.cs" />
+    <Compile Include="Messages\TwoWay\DigitalMessage.cs" />
+    <Compile Include="EventArguments\NewAnalogValueEventArgs.cs" />
+    <Compile Include="EventArguments\NewDigitalValueEventArgs.cs" />
+    <Compile Include="EventArguments\NewStringMessageEventArgs.cs" />
+    <Compile Include="Pin.cs" />
+    <Compile Include="PinCapability.cs" />
+    <Compile Include="EventArguments\PinStateEventArgs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Handlers\DigitalMessageHandler.cs" />
+    <Compile Include="SerialProviders\ComPortProvider.cs" />
+    <Compile Include="EventArguments\DataReceivedEventArgs.cs" />
+    <Compile Include="SerialProviders\ISerialProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Sharpduino.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,4 @@
+-------------------------
+//         I2C         //
+-------------------------
+When sending I2C continuous read, we might get a SysexString too many queries
