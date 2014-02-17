@@ -25,6 +25,7 @@ namespace Sharpduino.Library.Tests.LiveTests.Creators
         }
 
         [Test]
+        [Ignore("Not implemented")]
         public void Successfully_Toggles_Analog_Report_On()
         {
             // TODO : this should check if there are incoming analog reports
@@ -33,6 +34,7 @@ namespace Sharpduino.Library.Tests.LiveTests.Creators
         }
 
         [Test]
+        [Ignore("Not implemented")]
         public void Successfully_Toggles_Analog_Report_Off()
         {
             // TODO : this should toggle the analog report on and receive some messages then toggle it off
