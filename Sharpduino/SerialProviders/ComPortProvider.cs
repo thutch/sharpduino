@@ -13,7 +13,7 @@ namespace Sharpduino.SerialProviders
         public ComPortProvider(string portName, 
             int baudRate = 57600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
         {
-            port = new SerialPort(portName,baudRate,parity,dataBits,stopBits);
+            port = new EnhancedSerialPort(portName,baudRate,parity,dataBits,stopBits);
         }
 
          #region Proper Dispose Code
