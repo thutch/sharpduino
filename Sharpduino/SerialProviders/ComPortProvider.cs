@@ -8,7 +8,7 @@ namespace Sharpduino.SerialProviders
 {
     public class ComPortProvider : ISerialProvider
     {
-        private SerialPort port;
+		private EnhancedSerialPort port;
 
         public ComPortProvider(string portName, 
             int baudRate = 57600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One)
