@@ -39,7 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArduinoMega.cs" />
     <Compile Include="ArduinoUno.cs" />
+    <Compile Include="Constants\ArduinoMegaAnalogPins.cs" />
+    <Compile Include="Constants\ArduinoMegaPins.cs" />
+    <Compile Include="Constants\ArduinoMegaPWMPins.cs" />
     <Compile Include="Constants\ArduinoUnoAnalogPins.cs" />
     <Compile Include="Constants\ArduinoUnoPins.cs" />
     <Compile Include="Constants\ArduinoUnoPWMPins.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="Creators\ToggleAnalogReportMessageCreator.cs" />
     <Compile Include="Creators\ToggleDigitalReportMessageCreator.cs" />
     <Compile Include="EasyFirmata.cs" />
+    <Compile Include="EventArguments\NewI2CMessageEventArgs.cs" />
     <Compile Include="Exceptions\FirmataException.cs" />
     <Compile Include="Exceptions\InvalidFirmataMessageException.cs" />
     <Compile Include="Exceptions\InvalidPinModeException.cs" />

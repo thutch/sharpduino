@@ -100,6 +100,11 @@ namespace Sharpduino
         /// </summary>
         public event EventHandler<PinStateEventArgs> PinStateReceived;
 
+        /// <summary>
+        /// Event that is raised when we receive an I2C message as a response to a previous request
+        /// </summary>
+        public event EventHandler<NewI2CMessageEventArgs> NewI2CMessage;
+
         #endregion
 
         /***********************************************************************************************/
@@ -332,7 +337,7 @@ namespace Sharpduino
 
         public void Handle(I2CResponseMessage message)
         {
-            throw new NotImplementedException();
+            OnI2CMessageReceived(message);
         }
         #endregion
 
@@ -383,6 +388,15 @@ namespace Sharpduino
             if ( handler != null)
             {
                 handler(this, new PinStateEventArgs() {Pin = message.PinNo, Mode = message.Mode, Value = message.State});
+            }
+        }
+
+        private void OnI2CMessageReceived(I2CResponseMessage message)
+        {
+            var handler = NewI2CMessage;
+            if ( handler != null )
+            {
+                handler(this,new NewI2CMessageEventArgs(){Data = message.Data, Register = message.Register, SlaveAddress = message.SlaveAddress});
             }
         }
         #endregion

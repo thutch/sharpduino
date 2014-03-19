@@ -52,9 +52,12 @@ namespace Sharpduino.Messages.Send
 
 
         /// <summary>
-        /// The data load we send to the slave
+        /// The data load we send to the slave.
+        /// If we are talking for a read operation then the data is the number of bytes
+        /// that we expect as an answer. For a write operation then data is a double of the
+        /// register address and the value that we want to write to this register
         /// </summary>
-        public List<int> Data { get; private set; }
+        public List<int> Data { get; set; }
 
         public I2CRequestMessage()
         {

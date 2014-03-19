@@ -9,16 +9,16 @@ using Sharpduino.SerialProviders;
 
 namespace Sharpduino
 {
-    public class ArduinoUno : IDisposable
+    public class ArduinoMega : IDisposable
     {
         private readonly EasyFirmata firmata;
 
         /// <summary>
-        /// Creates a new instance of the ArduinoUno. This implementation hides a lot
+        /// Creates a new instance of the ArduinoMega. This implementation hides a lot
         /// of the complexity from the end user
         /// </summary>
         /// <param name="comPort">The port of the arduino board. All other parameters are supposed to be the default ones.</param>
-        public ArduinoUno(string comPort)
+        public ArduinoMega(string comPort)
         {
             var provider = new ComPortProvider(comPort);
             firmata = new EasyFirmata(provider);
@@ -41,7 +41,7 @@ namespace Sharpduino
         /// <param name="maxPulse">The max pulse.</param>
         /// <param name="startAngle">The start angle.</param>
         /// <exception cref="InvalidPinModeException">If the pin doesn't support servo functionality</exception>
-        public void SetServoMode(ArduinoUnoPins pin, int minPulse, int maxPulse, int startAngle)
+        public void SetServoMode(ArduinoMegaPins pin, int minPulse, int maxPulse, int startAngle)
         {
             if (firmata.IsInitialized == false)
                 return;
@@ -58,7 +58,7 @@ namespace Sharpduino
             currentPin.CurrentValue = startAngle;
         }
 
-        public void SetPinMode(ArduinoUnoPins pin, PinModes mode)
+        public void SetPinMode(ArduinoMegaPins pin, PinModes mode)
         {
             if ( firmata.IsInitialized == false )
                 return;
@@ -81,15 +81,11 @@ namespace Sharpduino
                     break;
             }
             
-            
-            // TODO : see if we need this or the next way
-            //firmata.Pins[(byte) pin].CurrentMode = mode;
-            
             // Update the pin state
             firmata.SendMessage(new PinStateQueryMessage(){Pin = (byte) pin});
         }
 
-        public void SetDO(ArduinoUnoPins pin, bool newValue)
+        public void SetDO(ArduinoMegaPins pin, bool newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
@@ -110,7 +106,7 @@ namespace Sharpduino
             firmata.Pins[(int) pin].CurrentValue = newValue ? 1 : 0;
         }
 
-        public void SetPWM(ArduinoUnoPWMPins pin, int newValue)
+        public void SetPWM(ArduinoMegaPWMPins pin, int newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
@@ -126,7 +122,7 @@ namespace Sharpduino
             firmata.Pins[(int) pin].CurrentValue = newValue;
         }
 
-        public void SetServo(ArduinoUnoPins pin, int newValue)
+        public void SetServo(ArduinoMegaPins pin, int newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
@@ -149,7 +145,7 @@ namespace Sharpduino
             firmata.SendMessage(new SamplingIntervalMessage(){Interval = milliseconds});
         }
 
-        public Pin GetCurrentPinState(ArduinoUnoPins pin)
+        public Pin GetCurrentPinState(ArduinoMegaPins pin)
         {
             if (!firmata.IsInitialized)
                 return null;
@@ -157,7 +153,7 @@ namespace Sharpduino
             return firmata.Pins[(int) pin];
         }
 
-        public float ReadAnalog(ArduinoUnoAnalogPins pin)
+        public float ReadAnalog(ArduinoMegaAnalogPins pin)
         {
             if (firmata.IsInitialized == false)
                 return -1;
@@ -169,7 +165,7 @@ namespace Sharpduino
             return firmata.AnalogPins[(int)pin].CurrentValue;
         }
 
-        public int ReadDigital(ArduinoUnoPins pin)
+        public int ReadDigital(ArduinoMegaPins pin)
         {
             if (firmata.IsInitialized == false)
                 return -1;
@@ -177,7 +173,7 @@ namespace Sharpduino
             if (firmata.Pins[(int)pin].CurrentMode != PinModes.Input)
                 return -1;
 
-            return firmata.Pins[(int) pin].CurrentValue;
+            return firmata.Pins[(int)pin].CurrentValue;
         }
 
 
