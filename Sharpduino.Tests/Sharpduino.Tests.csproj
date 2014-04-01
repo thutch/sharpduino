@@ -87,6 +87,7 @@
     <Compile Include="MessageBrokerTest.cs" />
     <Compile Include="Handlers\SysexFirmwareMessageHandlerTest.cs" />
     <Compile Include="LiveTests\Handlers\LiveSysexFirmwareMessageHandlerTest.cs" />
+    <Compile Include="PinTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Handlers\DigitalMessageHandlerTest.cs" />
   </ItemGroup>

@@ -229,10 +229,8 @@ namespace Sharpduino
         /// </summary>
         public void Handle(CapabilityMessage message)
         {
-            var pin = new Pin();
-            foreach (var mes in message.Modes)
-                pin.Capabilities[mes.Key] = mes.Value;
-
+            var pin = new Pin( message);
+            
             // Add it to the collection
             Pins.Add(pin);
         }
