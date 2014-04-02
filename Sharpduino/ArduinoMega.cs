@@ -36,7 +36,7 @@ namespace Sharpduino
         /// <summary>
         /// Sets a pin to servo mode with specific min and max pulse and start angle
         /// </summary>
-        /// <param name="pin">The pin.</param>
+        /// <param name="pin">The pinNum.</param>
         /// <param name="minPulse">The min pulse.</param>
         /// <param name="maxPulse">The max pulse.</param>
         /// <param name="startAngle">The start angle.</param>
@@ -49,7 +49,7 @@ namespace Sharpduino
             var currentPin = firmata.Pins[(int) pin];
 
             // Throw an exception if the pin doesn't have this capability
-            if (!currentPin.Capabilities.Keys.Contains(PinModes.Servo))
+            if (!currentPin.HasPinCapability(PinModes.Servo))
                 throw new InvalidPinModeException(PinModes.Servo,currentPin.Capabilities.Keys.ToList());
 
             // Configure the servo mode
@@ -62,10 +62,10 @@ namespace Sharpduino
         {
             if ( firmata.IsInitialized == false )
                 return;
-            
+            var currentPin = firmata.Pins[(int) pin];
             // Throw an exception if the pin doesn't have this capability
-            if (!firmata.Pins[(int)pin].Capabilities.Keys.Contains(mode))
-                throw new InvalidPinModeException(PinModes.Servo, firmata.Pins[(int)pin].Capabilities.Keys.ToList());
+            if (!firmata.Pins[(int)pin].HasPinCapability(mode))
+                throw new InvalidPinModeException(PinModes.Servo, currentPin.Capabilities.Keys.ToList());
 
             switch (mode)
             {
@@ -85,56 +85,60 @@ namespace Sharpduino
             firmata.SendMessage(new PinStateQueryMessage(){Pin = (byte) pin});
         }
 
-        public void SetDO(ArduinoMegaPins pin, bool newValue)
+        public void SetDO(ArduinoMegaPins pinNum, bool newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
 
+
+            var pin = firmata.Pins[(int) pinNum];
+
             // TODO : Decide on whether this should throw an exception
-            if ( firmata.Pins[(int) pin].CurrentMode != PinModes.Output )
+            if ( !pin.IsOutputMode() )
                 return;
 
+
             // find the port which this pin belongs to
-            var port = (byte) pin/8;
+            var port = pin.Port;
             // get the values for the other pins in this port
             var previousValues = firmata.GetDigitalPortValues(port);
             // update the new value for this pin
-            previousValues[(int) pin % 8] = newValue;
+            previousValues[(int) pinNum % 8] = newValue;
             // Send the message to the board
             firmata.SendMessage(new DigitalMessage(){Port = port, PinStates = previousValues});
             // update the new value to the firmata pins list
-            firmata.Pins[(int) pin].CurrentValue = newValue ? 1 : 0;
+            firmata.Pins[(int) pinNum].CurrentValue = newValue ? 1 : 0;
         }
 
         public void SetPWM(ArduinoMegaPWMPins pin, int newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
-
+            var currentPin = firmata.Pins[(int)pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.PWM)
+            if (!currentPin.IsPWMMode())
                 return;
 
             // Send the message to the board
             firmata.SendMessage(new AnalogMessage(){Pin = (byte)pin, Value = newValue});
 
             // Update the firmata pins list
-            firmata.Pins[(int) pin].CurrentValue = newValue;
+            currentPin.CurrentValue = newValue;
         }
 
         public void SetServo(ArduinoMegaPins pin, int newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
-
+            var currentPin = firmata.Pins[(int)pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.Servo)
+            if (!currentPin.IsServoMode())
                 return;
 
             firmata.SendMessage(new AnalogMessage(){Pin = (byte)pin,Value = newValue});
 
             // Update the firmata pins list
-            firmata.Pins[(int)pin].CurrentValue = newValue;
+            currentPin.CurrentValue = newValue;
         }
 
         public void SetSamplingInterval(int milliseconds)
@@ -157,23 +161,23 @@ namespace Sharpduino
         {
             if (firmata.IsInitialized == false)
                 return -1;
-
+            var currentPin = firmata.AnalogPins[(int)pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.AnalogPins[(int)pin].CurrentMode != PinModes.Analog)
+            if (!currentPin.IsAnalogMode())
                 return -1;
 
-            return firmata.AnalogPins[(int)pin].CurrentValue;
+            return currentPin.CurrentValue;
         }
 
         public int ReadDigital(ArduinoMegaPins pin)
         {
             if (firmata.IsInitialized == false)
                 return -1;
-
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.Input)
+            var currentPin = firmata.Pins[(int)pin];
+            if (!currentPin.IsInputMode())
                 return -1;
 
-            return firmata.Pins[(int)pin].CurrentValue;
+            return currentPin.CurrentValue;
         }
 
 

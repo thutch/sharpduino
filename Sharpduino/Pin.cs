@@ -12,29 +12,12 @@ namespace Sharpduino
         //Key PinModes, Value is resolution
         public Dictionary<PinModes, int> Capabilities { get; set; }
 
-        protected int currentValue;
-        public int CurrentValue
-        {
-            get { return currentValue; }
-            set
-            {
-                if (currentValue != value)
-                {
-                    currentValue = value;
-                    if (ValueChangedEventHandler != null)
-                    {
-                        ValueChangedEventHandler(this, new EventArgs());
-                    }
-                }
-            }
-        }
+        public int CurrentValue { get; set;}
 
         public byte PinNo { get; set; }
         public int Port { get; set; }
 
-        public EventHandler ValueChangedEventHandler;
-
-        public Pin()
+        protected Pin()
         {
             Capabilities = new Dictionary<PinModes, int>();
             CurrentValue = 0;

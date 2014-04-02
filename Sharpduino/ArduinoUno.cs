@@ -49,7 +49,7 @@ namespace Sharpduino
             var currentPin = firmata.Pins[(int) pin];
 
             // Throw an exception if the pin doesn't have this capability
-            if (!currentPin.Capabilities.Keys.Contains(PinModes.Servo))
+            if (!currentPin.HasPinCapability(PinModes.Servo))
                 throw new InvalidPinModeException(PinModes.Servo,currentPin.Capabilities.Keys.ToList());
 
             // Configure the servo mode
@@ -62,10 +62,12 @@ namespace Sharpduino
         {
             if ( firmata.IsInitialized == false )
                 return;
+
+            var currentPin = firmata.Pins[(int)pin];
             
             // Throw an exception if the pin doesn't have this capability
-            if (!firmata.Pins[(int)pin].Capabilities.Keys.Contains(mode))
-                throw new InvalidPinModeException(PinModes.Servo, firmata.Pins[(int)pin].Capabilities.Keys.ToList());
+            if (!currentPin.HasPinCapability(mode))
+                throw new InvalidPinModeException(PinModes.Servo, currentPin.Capabilities.Keys.ToList());
 
             switch (mode)
             {
@@ -93,13 +95,15 @@ namespace Sharpduino
         {
             if (firmata.IsInitialized == false)
                 return;
-
+           
             // TODO : Decide on whether this should throw an exception
-            if ( firmata.Pins[(int) pin].CurrentMode != PinModes.Output )
+            if ( !firmata.Pins[(int) pin].IsOutputMode() )
                 return;
 
             // find the port which this pin belongs to
-            var port = (byte) pin/8;
+            var aPin = firmata.Pins[(int) pin];
+            
+            var port = aPin.Port;
             // get the values for the other pins in this port
             var previousValues = firmata.GetDigitalPortValues(port);
             // update the new value for this pin
@@ -114,31 +118,31 @@ namespace Sharpduino
         {
             if (firmata.IsInitialized == false)
                 return;
-
+            var currentPin = firmata.Pins[(int)pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.PWM)
+            if (!currentPin.IsPWMMode())
                 return;
 
             // Send the message to the board
             firmata.SendMessage(new AnalogMessage(){Pin = (byte)pin, Value = newValue});
 
             // Update the firmata pins list
-            firmata.Pins[(int) pin].CurrentValue = newValue;
+            currentPin.CurrentValue = newValue;
         }
 
         public void SetServo(ArduinoUnoPins pin, int newValue)
         {
             if (firmata.IsInitialized == false)
                 return;
-
+            var currentPin = firmata.Pins[(int)pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.Servo)
+            if (!currentPin.IsServoMode())
                 return;
 
             firmata.SendMessage(new AnalogMessage(){Pin = (byte)pin,Value = newValue});
 
             // Update the firmata pins list
-            firmata.Pins[(int)pin].CurrentValue = newValue;
+            currentPin.CurrentValue = newValue;
         }
 
         public void SetSamplingInterval(int milliseconds)
@@ -161,23 +165,23 @@ namespace Sharpduino
         {
             if (firmata.IsInitialized == false)
                 return -1;
-
+            var currentPin = firmata.AnalogPins[(int) pin];
             // TODO : Decide on whether this should throw an exception
-            if (firmata.AnalogPins[(int)pin].CurrentMode != PinModes.Analog)
+            if (!currentPin.IsAnalogMode())
                 return -1;
 
-            return firmata.AnalogPins[(int)pin].CurrentValue;
+            return currentPin.CurrentValue;
         }
 
         public int ReadDigital(ArduinoUnoPins pin)
         {
             if (firmata.IsInitialized == false)
                 return -1;
-
-            if (firmata.Pins[(int)pin].CurrentMode != PinModes.Input)
+            var currentPin = firmata.Pins[(int)pin];
+            if (!currentPin.IsInputMode())
                 return -1;
 
-            return firmata.Pins[(int) pin].CurrentValue;
+            return currentPin.CurrentValue;
         }
 
 
